@@ -104,6 +104,7 @@ export const PublishWork: React.FC<Props> = ({
       likes: [],
       favorites: [],
       comments: [],
+      ratings: [],
       createdAt: Date.now(),
       published: true,
     };

@@ -151,6 +151,42 @@ const App: React.FC = () => {
     refreshData();
   }, [currentUser, refreshData]);
 
+  const handleAddReply = useCallback((workId: string, commentId: string, text: string) => {
+    if (!currentUser) return;
+    const w = getWorks().find((x) => x.id === workId);
+    if (!w) return;
+    w.comments.push({
+      id: 'c_' + Date.now(),
+      userId: currentUser.id,
+      userName: currentUser.name,
+      userAvatar: currentUser.avatar,
+      text,
+      createdAt: Date.now(),
+      replyToId: commentId,
+    });
+    updateWork(w);
+    refreshData();
+  }, [currentUser, refreshData]);
+
+  const handleRate = useCallback((workId: string, score: number) => {
+    if (!currentUser) { setShowLogin(true); return; }
+    const w = getWorks().find((x) => x.id === workId);
+    if (!w) return;
+    const existingIdx = w.ratings.findIndex((r) => r.userId === currentUser.id);
+    if (existingIdx >= 0) {
+      w.ratings[existingIdx].score = score;
+      w.ratings[existingIdx].createdAt = Date.now();
+    } else {
+      w.ratings.push({
+        userId: currentUser.id,
+        score,
+        createdAt: Date.now(),
+      });
+    }
+    updateWork(w);
+    refreshData();
+  }, [currentUser, refreshData]);
+
   const handleTogglePublish = useCallback((workId: string) => {
     const w = getWorks().find((x) => x.id === workId);
     if (!w) return;
@@ -177,6 +213,8 @@ const App: React.FC = () => {
             onToggleFavorite={handleToggleFavorite}
             onFollow={handleFollow}
             onAddComment={handleAddComment}
+            onAddReply={handleAddReply}
+            onRate={handleRate}
           />
         );
       }

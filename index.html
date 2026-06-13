@@ -54,13 +54,29 @@
       .card-author span { font-size: 12px; color: #888; }
       .card-likes { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #999; }
       .card-likes .heart { color: #e74c3c; }
+      .card-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+      .card-rating .rating-stars { color: #f5a623; font-size: 12px; letter-spacing: 1px; }
+      .card-rating .rating-score { font-size: 12px; color: #666; font-weight: 500; }
 
       /* ===== Detail Page ===== */
       .detail-page { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
       .detail-main { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
       .detail-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-      .detail-info { display: flex; gap: 16px; font-size: 13px; color: #888; margin-bottom: 20px; }
+      .detail-info { display: flex; gap: 16px; font-size: 13px; color: #888; margin-bottom: 12px; }
       .detail-info .tag { background: #f0ece4; padding: 2px 10px; border-radius: 10px; }
+      .detail-rating { background: #faf9f6; border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .rating-display { display: flex; align-items: center; gap: 10px; }
+      .rating-stars-big { color: #f5a623; font-size: 20px; letter-spacing: 2px; }
+      .rating-stars-big .star.half { background: linear-gradient(90deg, #f5a623 50%, #ddd 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .rating-avg { font-size: 20px; font-weight: 700; color: #333; }
+      .rating-count { font-size: 13px; color: #999; }
+      .rating-action { display: flex; align-items: center; gap: 10px; }
+      .rating-label { font-size: 13px; color: #666; }
+      .interactive-stars { display: flex; gap: 2px; }
+      .star.interactive { font-size: 22px; cursor: pointer; color: #ddd; transition: color .15s, transform .1s; user-select: none; }
+      .star.interactive:hover { transform: scale(1.1); }
+      .star.interactive.filled { color: #f5a623; }
+      .star.filled { color: #f5a623; }
       .step-list { margin-top: 24px; }
       .step-item { margin-bottom: 28px; }
       .step-num { display: inline-block; width: 28px; height: 28px; background: #b8860b; color: #fff; border-radius: 50%; text-align: center; line-height: 28px; font-size: 13px; font-weight: 600; margin-bottom: 8px; }

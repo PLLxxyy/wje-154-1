@@ -6,10 +6,19 @@ interface Props {
   currentUserId: string | undefined;
   currentUser: { name: string; avatar: string } | null;
   onAddComment: (text: string) => void;
+  onAddReply: (commentId: string, text: string) => void;
 }
 
-export const CommentSection: React.FC<Props> = ({ comments, currentUserId, currentUser, onAddComment }) => {
+export const CommentSection: React.FC<Props> = ({ comments, currentUserId, currentUser, onAddComment, onAddReply }) => {
   const [text, setText] = useState('');
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyText, setReplyText] = useState('');
+
+  const topComments = comments.filter((c) => !c.replyToId);
+  const getReplies = (parentId: string) =>
+    comments
+      .filter((c) => c.replyToId === parentId)
+      .sort((a, b) => a.createdAt - b.createdAt);
 
   const handleSubmit = () => {
     if (!text.trim()) return;
@@ -17,10 +26,49 @@ export const CommentSection: React.FC<Props> = ({ comments, currentUserId, curre
     setText('');
   };
 
+  const handleReplySubmit = (commentId: string) => {
+    if (!replyText.trim()) return;
+    onAddReply(commentId, replyText.trim());
+    setReplyText('');
+    setReplyingTo(null);
+  };
+
   const formatTime = (ts: number): string => {
     const d = new Date(ts);
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   };
+
+  const renderComment = (c: CommentType, isReply?: boolean) => (
+    <div key={c.id} className="comment-item" style={isReply ? { marginLeft: 48, marginTop: 8 } : undefined}>
+      <img src={c.userAvatar} alt="" />
+      <div className="comment-body">
+        <div className="comment-author">{c.userName}</div>
+        <div className="comment-time">{formatTime(c.createdAt)}</div>
+        <div className="comment-text">{c.text}</div>
+        {currentUserId && currentUser && !isReply && (
+          <button
+            className="reply-btn"
+            onClick={() => {
+              setReplyingTo(replyingTo === c.id ? null : c.id);
+              setReplyText('');
+            }}
+          >
+            回复
+          </button>
+        )}
+        {replyingTo === c.id && (
+          <div className="reply-input-wrap">
+            <textarea
+              value={replyText}
+              onChange={(e) => setReplyText(e.target.value)}
+              placeholder={`回复 ${c.userName}...`}
+            />
+            <button className="comment-submit" onClick={() => handleReplySubmit(c.id)}>回复</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div className="comments-section">
@@ -40,15 +88,11 @@ export const CommentSection: React.FC<Props> = ({ comments, currentUserId, curre
       {!currentUserId && (
         <p style={{ fontSize: 13, color: '#999', marginBottom: 16 }}>登录后可以发表评论</p>
       )}
-      {comments.slice().sort((a, b) => b.createdAt - a.createdAt).map((c) => (
-        <div key={c.id} className="comment-item">
-          <img src={c.userAvatar} alt="" />
-          <div className="comment-body">
-            <div className="comment-author">{c.userName}</div>
-            <div className="comment-time">{formatTime(c.createdAt)}</div>
-            <div className="comment-text">{c.text}</div>
-          </div>
-        </div>
+      {topComments.slice().sort((a, b) => b.createdAt - a.createdAt).map((c) => (
+        <React.Fragment key={c.id}>
+          {renderComment(c)}
+          {getReplies(c.id).map((r) => renderComment(r, true))}
+        </React.Fragment>
       ))}
       {comments.length === 0 && (
         <p style={{ fontSize: 13, color: '#bbb', textAlign: 'center', padding: '20px 0' }}>暂无评论，来抢沙发吧</p>

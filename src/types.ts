@@ -46,6 +46,7 @@ export interface Comment {
   userAvatar: string;
   text: string;
   createdAt: number;
+  replyToId?: string;
 }
 
 export interface CurrentUser {

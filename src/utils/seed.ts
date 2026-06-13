@@ -45,6 +45,11 @@ const WORKS: Work[] = [
       { id: 'c1', userId: 'u1', userName: '手工爱好者', userAvatar: placeholder(6, 60, 60, '😊'), text: '层次太美了，请问可以用普通黄油代替片状黄油吗？', createdAt: 1700000000000 },
       { id: 'c2', userId: 'u2', userName: '烘焙新手', userAvatar: placeholder(7, 60, 60, '🤗'), text: '试做了一次，虽然没有完美层次但味道很好！', createdAt: 1700100000000 },
     ],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1700050000000 },
+      { userId: 'u2', score: 4, createdAt: 1700150000000 },
+      { userId: 'u3', score: 5, createdAt: 1700250000000 },
+    ],
     createdAt: 1700000000000, published: true,
   },
   {
@@ -64,6 +69,10 @@ const WORKS: Work[] = [
     ],
     tips: '蛋白不要打到硬性发泡，否则蛋糕容易开裂。水浴法的水要用热水。',
     likes: ['u2'], favorites: ['u2', 'u3'], comments: [],
+    ratings: [
+      { userId: 'u2', score: 5, createdAt: 1699950000000 },
+      { userId: 'u3', score: 4, createdAt: 1700050000000 },
+    ],
     createdAt: 1699900000000, published: true,
   },
   {
@@ -83,6 +92,9 @@ const WORKS: Work[] = [
     ],
     tips: '红茶用研磨机打碎效果更好，颗粒太大会影响口感。',
     likes: ['u1', 'u3'], favorites: [], comments: [],
+    ratings: [
+      { userId: 'u1', score: 4, createdAt: 1699850000000 },
+    ],
     createdAt: 1699800000000, published: true,
   },
 
@@ -105,6 +117,11 @@ const WORKS: Work[] = [
     likes: ['u1', 'u2', 'u3', 'u4'], favorites: ['u1', 'u2'], comments: [
       { id: 'c3', userId: 'u3', userName: '编织小白', userAvatar: placeholder(0, 60, 60, '😄'), text: '冰条线哪里买比较实惠呀？', createdAt: 1700200000000 },
     ],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1699750000000 },
+      { userId: 'u2', score: 4, createdAt: 1699850000000 },
+      { userId: 'u4', score: 5, createdAt: 1699950000000 },
+    ],
     createdAt: 1699700000000, published: true,
   },
   {
@@ -123,6 +140,10 @@ const WORKS: Work[] = [
     ],
     tips: '元宝针弹性大，起针数可以少一些。围巾宽度可自行调整起针数。',
     likes: ['u3'], favorites: ['u1'], comments: [],
+    ratings: [
+      { userId: 'u1', score: 4, createdAt: 1699650000000 },
+      { userId: 'u3', score: 5, createdAt: 1699750000000 },
+    ],
     createdAt: 1699600000000, published: true,
   },
 
@@ -145,6 +166,11 @@ const WORKS: Work[] = [
     likes: ['u1', 'u4'], favorites: ['u3'], comments: [
       { id: 'c4', userId: 'u4', userName: '木工爱好者', userAvatar: placeholder(2, 60, 60, '🪓'), text: '请问新手适合从这个项目开始学吗？', createdAt: 1700300000000 },
     ],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1699550000000 },
+      { userId: 'u3', score: 4, createdAt: 1699650000000 },
+      { userId: 'u4', score: 5, createdAt: 1699750000000 },
+    ],
     createdAt: 1699500000000, published: true,
   },
   {
@@ -164,6 +190,11 @@ const WORKS: Work[] = [
     ],
     tips: '榫卯配合要精确，太松不牢固，太紧会撑裂。建议先用废料练习。',
     likes: ['u2', 'u5'], favorites: ['u4'], comments: [],
+    ratings: [
+      { userId: 'u2', score: 5, createdAt: 1699450000000 },
+      { userId: 'u4', score: 5, createdAt: 1699550000000 },
+      { userId: 'u5', score: 4, createdAt: 1699650000000 },
+    ],
     createdAt: 1699400000000, published: true,
   },
 
@@ -184,6 +215,11 @@ const WORKS: Work[] = [
     ],
     tips: '接缝一定要抹平，否则烧制时容易开裂。杯子壁厚保持5mm左右最佳。',
     likes: ['u1', 'u2', 'u3'], favorites: ['u1', 'u5'], comments: [],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1699350000000 },
+      { userId: 'u2', score: 4, createdAt: 1699450000000 },
+      { userId: 'u5', score: 5, createdAt: 1699550000000 },
+    ],
     createdAt: 1699300000000, published: true,
   },
   {
@@ -202,6 +238,11 @@ const WORKS: Work[] = [
     ],
     tips: '侘寂风的精髓在于不完美，不要刻意追求对称。釉面的窑变效果每次都不一样。',
     likes: ['u4', 'u5'], favorites: ['u2'], comments: [],
+    ratings: [
+      { userId: 'u2', score: 5, createdAt: 1699250000000 },
+      { userId: 'u4', score: 5, createdAt: 1699350000000 },
+      { userId: 'u5', score: 4, createdAt: 1699450000000 },
+    ],
     createdAt: 1699200000000, published: true,
   },
 
@@ -225,6 +266,12 @@ const WORKS: Work[] = [
     likes: ['u1', 'u3', 'u4'], favorites: ['u3', 'u4'], comments: [
       { id: 'c5', userId: 'u5', userName: '手作匠人', userAvatar: placeholder(4, 60, 60, '😎'), text: '第一次做皮具推荐从这个开始，难度适中成品也很实用！', createdAt: 1700400000000 },
     ],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1699150000000 },
+      { userId: 'u3', score: 4, createdAt: 1699250000000 },
+      { userId: 'u4', score: 5, createdAt: 1699350000000 },
+      { userId: 'u5', score: 5, createdAt: 1700450000000 },
+    ],
     createdAt: 1699100000000, published: true,
   },
   {
@@ -243,6 +290,9 @@ const WORKS: Work[] = [
     ],
     tips: '可以一次做很多个送朋友，是非常好的小礼物。',
     likes: ['u2'], favorites: [], comments: [],
+    ratings: [
+      { userId: 'u2', score: 4, createdAt: 1699050000000 },
+    ],
     createdAt: 1699000000000, published: true,
   },
 
@@ -266,6 +316,12 @@ const WORKS: Work[] = [
       { id: 'c6', userId: 'u1', userName: '手工爱好者', userAvatar: placeholder(6, 60, 60, '😊'), text: '终于学会螺旋手法了，包出来的花束好好看！', createdAt: 1700500000000 },
       { id: 'c7', userId: 'u6', userName: '花艺学徒', userAvatar: placeholder(5, 60, 60, '🌼'), text: '请问韩素纸和普通包装纸有什么区别？', createdAt: 1700600000000 },
     ],
+    ratings: [
+      { userId: 'u1', score: 5, createdAt: 1698950000000 },
+      { userId: 'u2', score: 5, createdAt: 1699050000000 },
+      { userId: 'u3', score: 4, createdAt: 1699150000000 },
+      { userId: 'u5', score: 5, createdAt: 1699250000000 },
+    ],
     createdAt: 1698900000000, published: true,
   },
   {
@@ -284,6 +340,11 @@ const WORKS: Work[] = [
     ],
     tips: '永生花怕潮湿，不要放在卫生间。构图不要太满，留白更有意境。',
     likes: ['u3', 'u5'], favorites: ['u4', 'u5'], comments: [],
+    ratings: [
+      { userId: 'u3', score: 5, createdAt: 1698850000000 },
+      { userId: 'u4', score: 4, createdAt: 1698950000000 },
+      { userId: 'u5', score: 5, createdAt: 1699050000000 },
+    ],
     createdAt: 1698800000000, published: true,
   },
 ];
